@@ -23,9 +23,22 @@ const Roblox_Catalog_Api_TaxonomyModel = z.object({
   taxonomyId: z.string(),
   taxonomyName: z.string(),
 });
+const Roblox_Catalog_Api_Discount = z.object({
+  robuxDiscountAmount: z.number().int(),
+  robuxDiscountPercentage: z.number(),
+  discountCampaign: z.string(),
+  localizedDiscountAttribution: z.string(),
+});
+const Roblox_Catalog_Api_DiscountInformation = z.object({
+  originalPrice: z.number().int(),
+  totalDiscountPercentage: z.number(),
+  totalDiscountAmount: z.number().int(),
+  discounts: z.array(Roblox_Catalog_Api_Discount),
+});
 const Roblox_Catalog_Api_TimedOption = z.object({
   days: z.number().int(),
   price: z.number().int(),
+  discountInformation: Roblox_Catalog_Api_DiscountInformation,
   selected: z.boolean(),
 });
 const Roblox_Catalog_Api_CatalogSearchDetailedResponseItemV2 = z.object({
@@ -119,6 +132,7 @@ const Roblox_Catalog_Api_CatalogSearchDetailedResponseItemV2 = z.object({
     z.literal(89),
     z.literal(90),
     z.literal(91),
+    z.literal(92),
   ]),
   bundleType: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
   isRecolorable: z.boolean(),
@@ -295,6 +309,7 @@ export const getSearchItemsDetails = endpoint({
       z.literal(4),
       z.literal(5),
       z.literal(6),
+      z.literal(7),
     ]),
     SortAggregation: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),
     SortType: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),

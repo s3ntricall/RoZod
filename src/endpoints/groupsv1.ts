@@ -327,6 +327,7 @@ const Roblox_Groups_Api_GroupSettingsResponse = z.object({
   ]),
   slowmode: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
   isMemberListVisibleToPublic: z.boolean(),
+  isAutoAssignRoleDisabled: z.boolean(),
 });
 const Roblox_Groups_Api_UpdateGroupSettingsRequest = z.object({
   isApprovalRequired: z.boolean(),
